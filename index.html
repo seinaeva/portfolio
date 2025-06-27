@@ -34,17 +34,32 @@
     <p>© 2025 Mistick 의 기술 포트폴리오</p>
   </footer>
 
+<section class="status">
+  <h2>🔧 오드로이드 상태</h2>
+  <p>CPU 사용률: <span id="cpu">-</span>%</p>
+  <p>메모리 사용률: <span id="mem">-</span>%</p>
+  <p>온도: <span id="temp">-</span>°C</p>
+</section>
+
 <script>
-  fetch("https://top1000.kr/restapi.php")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("cpu").innerText = data.cpu.toFixed(1);
-      document.getElementById("mem").innerText = data.mem.toFixed(1);
-      document.getElementById("temp").innerText = data.temp.toFixed(1);
-    })
-    .catch(err => {
-      console.error("오드로이드 상태 가져오기 실패:", err);
-    });
+  function fetchOdroidStatus() {
+    fetch("https://top1000.kr/restapi.php")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("cpu").innerText = data.cpu.toFixed(1);
+        document.getElementById("mem").innerText = data.mem.toFixed(1);
+        document.getElementById("temp").innerText = data.temp.toFixed(1);
+      })
+      .catch(err => {
+        console.error("오드로이드 상태 가져오기 실패:", err);
+      });
+  }
+
+  // 페이지 로딩 시 1회 호출
+  fetchOdroidStatus();
+
+  // 5초마다 자동 갱신
+  setInterval(fetchOdroidStatus, 5000);
 </script>
 </body>
 </html>
