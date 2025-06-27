@@ -34,17 +34,17 @@
     <p>© 2025 Mistick 의 기술 포트폴리오</p>
   </footer>
 
-  <script>
-    fetch("https://top1000.kr/restapi.php")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("cpu").innerText = data.cpu;
-        document.getElementById("mem").innerText = data.mem;
-        document.getElementById("temp").innerText = data.temp;
-      })
-      .catch(err => {
-        console.error("데이터 로딩 실패:", err);
-      });
-  </script>
+<script>
+  fetch("https://top1000.kr/restapi.php")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("cpu").innerText = data.cpu.toFixed(1);
+      document.getElementById("mem").innerText = data.mem.toFixed(1);
+      document.getElementById("temp").innerText = data.temp.toFixed(1);
+    })
+    .catch(err => {
+      console.error("오드로이드 상태 가져오기 실패:", err);
+    });
+</script>
 </body>
 </html>
