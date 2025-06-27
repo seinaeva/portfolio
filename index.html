@@ -1,26 +1,50 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mistick 의 포트폴리오222</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mistick 의 포트폴리오</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Mistick 의 포트폴리오222</h1>
-    <p>개발자 | IoT 기술자 | 기술 블로그 운영자</p>
+    <h1>Mistick 의 포트폴리오</h1>
+    <p>FastAPI / Odroid / IoT 프로젝트 소개</p>
   </header>
-  <section>
-    <h2>프로젝트 소개</h2>
+
+  <section class="projects">
+    <h2>📁 프로젝트 소개</h2>
     <ul>
-      <li>FastAPI + Odroid 서버 상태 모니터링</li>
-      <li>Solana 토큰 자동 발행 툴</li>
-      <li>3x3.show 지역기반 플랫폼</li>
+      <li>FastAPI 기반 오드로이드 상태 모니터링 시스템</li>
+      <li>Solana 토큰 자동화 발행 툴</li>
+      <li>3x3.show SEO 최적화 플랫폼</li>
     </ul>
   </section>
+
+  <section class="status">
+    <h2>🔧 오드로이드 상태</h2>
+    <ul>
+      <li>CPU 사용률: <span id="cpu">-</span>%</li>
+      <li>메모리 사용률: <span id="mem">-</span>%</li>
+      <li>온도: <span id="temp">-</span>°C</li>
+    </ul>
+  </section>
+
   <footer>
     <p>© 2025 Mistick 의 기술 포트폴리오</p>
   </footer>
+
+  <script>
+    fetch("https://top1000.kr/restapi.php")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("cpu").innerText = data.cpu;
+        document.getElementById("mem").innerText = data.mem;
+        document.getElementById("temp").innerText = data.temp;
+      })
+      .catch(err => {
+        console.error("데이터 로딩 실패:", err);
+      });
+  </script>
 </body>
 </html>
